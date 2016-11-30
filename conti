@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -u
+set -e
+
+# Check if docker and docker-compose are available on trhe system
+command -v docker >/dev/null 2>&1 || { echo "docker is not installed. Aborting." >&2; exit 1; }
+command -v docker-compose >/dev/null 2>&1 || { echo "docker-compose is not installed. Aborting." >&2; exit 1; }
+
+# Set path to Conti
+export CONTI_PATH=`pwd -P`
+
+COMMAND=$1; shift;
+
+[ ! -f ${CONTI_PATH}/plugins/${COMMAND} ] && usage
+${CONTI_PATH}/plugins/${COMMAND} "$@"

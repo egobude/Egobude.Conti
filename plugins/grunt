@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+grunt() {
+    docker-compose run --user=1000:33 nodejs grunt $@
+}
+
+case "$1" in
+    *)
+        grunt "$@"
+        ;;
+esac

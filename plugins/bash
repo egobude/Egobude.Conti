@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+command() {
+    docker-compose exec --user=1000:33 $@ /bin/bash
+}
+
+case "$1" in
+    *)
+        command "$@"
+        ;;
+esac

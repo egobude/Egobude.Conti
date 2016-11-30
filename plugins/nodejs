@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+nodejs() {
+    docker-compose run --user=1000:33 nodejs node $@
+}
+
+case "$1" in
+    *)
+        nodejs "$@"
+        ;;
+esac

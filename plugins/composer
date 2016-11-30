@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+command() {
+    docker-compose run --rm composer $@
+}
+
+case "$1" in
+    *)
+        command "$@"
+        ;;
+esac
