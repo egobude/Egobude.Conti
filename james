@@ -1,0 +1,82 @@
+#!/bin/bash
+
+[ -L $0 ] && pushd `readlink $0 | xargs dirname` > /dev/null \
+    || pushd `dirname $0` > /dev/null
+export WORKINGDIR=`pwd -P`
+popd > /dev/null
+
+export APP_NAME="james"
+export REGISTRY="${REGISTRY:=docker-registry.avency.de:5000/avency}"
+export IMAGES=$(ls ${WORKINGDIR}/images)
+export PLUGINS=$(ls ${WORKINGDIR}/plugins)
+export TEMPLATES="${WORKINGDIR}/templates"
+export CMD_USER="1000:33"
+export DOCKER_COMPOSE_FILE="$(pwd)/docker-compose.yml"
+export DOCKER_ENV_FILE="$(pwd)/.env"
+
+function module-exec {
+	local MODULE=${1}
+	if [ ! -f ${WORKINGDIR}/plugins/${MODULE} ]; then
+		echo "Module not found. Aborting."
+		exit 1
+	fi
+	shift
+	bash ${WORKINGDIR}/plugins/${MODULE} $@
+}
+
+config-exists() {
+    if [ ! ${DOCKER_COMPOSE_FILE} ]; then
+      echo "docker-compose.yml not found in the current directory, call '${APP_NAME} install' first"
+      exit 1
+    fi
+}
+
+declare -x -f config-exists
+
+case "$1" in
+    install)
+        shift
+        module-exec docker_install  "$@"
+        ;;
+    uninstall)
+        module-exec docker_uninstall
+        ;;
+    up)
+		module-exec docker_up
+		;;
+    down)
+		module-exec docker_down
+		;;
+    ps)
+        module-exec docker_ps
+        ;;
+    logs)
+        shift
+		module-exec docker_logs "$@"
+        ;;
+    build)
+        shift
+		module-exec docker_build "$@"
+        ;;
+    push)
+        shift
+		module-exec docker_push "$@"
+        ;;
+    bash)
+        shift
+        module-exec docker_bash "$@"
+        ;;
+    grunt)
+        module-exec docker_grunt "$@"
+        ;;
+    bower)
+        module-exec docker_bower "$@"
+        ;;
+    composer)
+        shift
+        module-exec docker_composer "$@"
+        ;;
+    time)
+        module-exec helper_time
+        ;;
+esac

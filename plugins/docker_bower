@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker-compose run --user=1000:33 nodejs bower $@

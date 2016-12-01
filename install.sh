@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-PKG="conti"
-GIT_URL="https://github.com/egobude/conti.git"
+PKG="bruno"
+GIT_URL="https://github.com/egobude/bruno.git"
 INSTALL_DIR="${INSTALL_DIR}"
 
 has(){
@@ -28,8 +28,8 @@ install_from_git(){
             exit 1
         }
         chmod -R 755 ${INSTALL_DIR}/plugins 2>/dev/null
-        chmod 755 ${INSTALL_DIR}/conti 2>/dev/null
-        sudo ln -sf ${INSTALL_DIR}/conti /usr/local/bin/conti
+        chmod 755 ${INSTALL_DIR}/bruno 2>/dev/null
+        sudo ln -sf ${INSTALL_DIR}/bruno /usr/local/bin/bruno
     fi
 }
 
@@ -42,12 +42,12 @@ fi
 
 [ -z "${INSTALL_DIR}" ] && INSTALL_DIR="/usr/local/${PKG}"
 
-if [ -f "${INSTALL_DIR}/conti" ]; then
+if [ -f "${INSTALL_DIR}/bruno" ]; then
     echo ""
     echo "Done!"
 else
     echo >&2 ""
-    echo >&2 "Something went wrong. ${INSTALL_DIR}/conti not found"
+    echo >&2 "Something went wrong. ${INSTALL_DIR}/bruno not found"
     echo >&2 ""
     exit 1
 fi

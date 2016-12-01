@@ -1,0 +1,15 @@
+#!/bin/sh
+
+SHELL="bash"
+IMAGE=$1
+
+if [ "$IMAGE" == "" ]; then
+	echo "No image given. Aborting."
+	exit 1;
+fi
+
+if [ "$IMAGE" == "php" ]; then
+    SHELL="sh"
+fi
+
+docker-compose exec --user=${CMD_USER} ${IMAGE} ${SHELL}
