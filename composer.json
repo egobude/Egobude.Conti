@@ -1,0 +1,8 @@
+{
+  "name": "egobude/conti",
+  "description": "Utility for your docker development environment",
+  "license": "MIT",
+  "bin": [
+    "bin/conti"
+  ]
+}
