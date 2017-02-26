@@ -3,7 +3,7 @@ version: '2'
 services:
 
   nginx: 
-    image: nginx:1.11
+    image: zeroboh/nginx:1.11-alpine
     ports:
       - 80
     env_file:
@@ -14,7 +14,7 @@ services:
       - ${DATA_LOCATION}:/var/www/Web
 
   php:
-    image: php:7-fpm
+    image: zeroboh/php:7.1-fpm-alpine
     env_file:
       - ./.env
     links:
@@ -23,12 +23,12 @@ services:
       - ${DATA_LOCATION}:/var/www/Web
 
   mysql:
-    image: mysql:5.6
+    image: zeroboh/mariadb:10.1-debian-jessie
     env_file:
       - ./.env
 
   composer:
-    image: composer/composer:1.1
+    image: composer/composer:1-php5-alpine
     env_file:
       - ./.env
     working_dir: /app/
