@@ -1,7 +1,5 @@
 #!/bin/sh
 
-config-exists
-
 IMAGE=$1
 
 if [ "$IMAGE" == "" ]; then

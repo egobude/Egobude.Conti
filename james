@@ -30,48 +30,57 @@ config-exists() {
     fi
 }
 
-declare -x -f config-exists
-
 case "$1" in
     install)
         shift
         module-exec docker_install  "$@"
         ;;
     uninstall)
+        config-exists
         module-exec docker_uninstall
         ;;
     up)
+        config-exists
 		module-exec docker_up
 		;;
     down)
+        config-exists
 		module-exec docker_down
 		;;
     ps)
+        config-exists
         module-exec docker_ps
         ;;
     logs)
+        config-exists
         shift
 		module-exec docker_logs "$@"
         ;;
     build)
+        config-exists
         shift
 		module-exec docker_build "$@"
         ;;
     push)
+        config-exists
         shift
 		module-exec docker_push "$@"
         ;;
     bash)
+        config-exists
         shift
         module-exec docker_bash "$@"
         ;;
     grunt)
+        config-exists
         module-exec docker_grunt "$@"
         ;;
     bower)
+        config-exists
         module-exec docker_bower "$@"
         ;;
     composer)
+        config-exists
         shift
         module-exec docker_composer "$@"
         ;;
