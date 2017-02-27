@@ -1,25 +1,28 @@
 #!/bin/bash
 
-[ -L $0 ] && pushd `readlink $0 | xargs dirname` > /dev/null \
-    || pushd `dirname $0` > /dev/null
-export WORKINGDIR=`pwd -P`
-popd > /dev/null
+# Check if docker and docker-compose are installed on the system 
+command -v docker >/dev/null 2>&1 || { echo "docker is not installed. Aborting." >&2; exit 1; }
+command -v docker-compose >/dev/null 2>&1 || { echo "docker-compose is not installed. Aborting." >&2; exit 1; }
 
+# Define some variables
 export APP_NAME="conti"
-export PLUGINS=$(ls ${WORKINGDIR}/plugins)
-export TEMPLATES="${WORKINGDIR}/templates"
+export PROJECT_DIR=$(pwd -P)
+export PACKAGE_DIR=${PROJECT_DIR}/vendor/egobude/conti
+export PLUGINS=$(ls ${PACKAGE_DIR}/plugins)
+export TEMPLATES="${PACKAGE_DIR}/templates"
 export CMD_USER="1000:33"
 export DOCKER_COMPOSE_FILE="$(pwd)/docker-compose.yml"
 export DOCKER_ENV_FILE="$(pwd)/.env"
 
+# Define some functions
 function module-exec {
 	local MODULE=${1}
-	if [ ! -f ${WORKINGDIR}/plugins/${MODULE} ]; then
+	if [ ! -f ${PACKAGE_DIR}/plugins/${MODULE} ]; then
 		echo "Module not found. Aborting."
 		exit 1
 	fi
 	shift
-	bash ${WORKINGDIR}/plugins/${MODULE} $@
+	bash ${PACKAGE_DIR}/plugins/${MODULE} $@
 }
 
 function config-exists {
@@ -91,4 +94,8 @@ case "$1" in
     time)
         module-exec helper_time
         ;;
+    *)
+        echo "Module not found. Aborting!"
+        exit 1
+    ;;
 esac
