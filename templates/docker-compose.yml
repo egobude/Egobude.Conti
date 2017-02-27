@@ -24,6 +24,9 @@ services:
 
   mysql:
     image: zeroboh/mariadb:10.1-debian-jessie
+    volumes:
+      - ./mysql-persistence:/var/lib/mysql
+      - ./mysql-backup:/mysql-backup
     env_file:
       - ./.env
 

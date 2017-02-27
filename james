@@ -39,6 +39,10 @@ case "$1" in
         config-exists
         module-exec docker_uninstall
         ;;
+    mysqldump)
+        config-exists
+        module-exec docker_mysqldump
+        ;;
     up)
         config-exists
 		module-exec docker_up
