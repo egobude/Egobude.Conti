@@ -63,16 +63,6 @@ case "$1" in
         shift
 		module-exec docker_logs "$@"
         ;;
-    build)
-        config-exists
-        shift
-		module-exec docker_build "$@"
-        ;;
-    push)
-        config-exists
-        shift
-		module-exec docker_push "$@"
-        ;;
     bash)
         config-exists
         shift
