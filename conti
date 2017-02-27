@@ -5,8 +5,7 @@
 export WORKINGDIR=`pwd -P`
 popd > /dev/null
 
-export APP_NAME="james"
-export REGISTRY="${REGISTRY:=docker-registry.avency.de:5000/avency}"
+export APP_NAME="conti"
 export PLUGINS=$(ls ${WORKINGDIR}/plugins)
 export TEMPLATES="${WORKINGDIR}/templates"
 export CMD_USER="1000:33"
@@ -23,7 +22,7 @@ function module-exec {
 	bash ${WORKINGDIR}/plugins/${MODULE} $@
 }
 
-config-exists() {
+function config-exists {
     if [ ! -f ${DOCKER_COMPOSE_FILE} ]; then
       clear
       echo "docker-compose.yml not found in the current directory, call '${APP_NAME} install conti<<<vx.dev' first"
