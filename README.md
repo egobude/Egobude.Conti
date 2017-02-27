@@ -16,3 +16,11 @@ Then you can call it via
 ```
 vendor/bin/conti
 ```
+
+## Usage
+
+See help command
+
+```
+vendor/bin/conti help
+```
