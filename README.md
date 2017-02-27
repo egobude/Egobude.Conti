@@ -14,5 +14,5 @@ composer require egobude/conti
 Then you can call it via 
 
 ```
-bin/conti
+vendor/bin/conti
 ```
