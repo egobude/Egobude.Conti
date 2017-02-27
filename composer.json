@@ -11,6 +11,6 @@
       }
   ],
   "bin": [
-    "bin/conti"
+    "conti"
   ]
 }
