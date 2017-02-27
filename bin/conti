@@ -28,7 +28,7 @@ function module-exec {
 function config-exists {
     if [ ! -f ${DOCKER_COMPOSE_FILE} ]; then
       clear
-      echo "docker-compose.yml not found in the current directory, call '${APP_NAME} install conti<<<vx.dev' first"
+      echo "docker-compose.yml not found in the current directory, call '${APP_NAME} install conti.dev' first"
       exit 1
     fi
 }
