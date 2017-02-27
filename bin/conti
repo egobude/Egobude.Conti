@@ -33,7 +33,33 @@ function config-exists {
     fi
 }
 
+help() {
+    cat <<__EOF__
+        ${APP_NAME} - Utility for your docker development environment
+        
+        Usage:
+          ${APP_NAME} [command] [arguments]
+          ${APP_NAME} help
+
+        Commands:
+          install             Add a docker-compose file and a .env file
+          uninstall           Remove the docker-compose file and .env file
+          up                  Create and start containers
+          down                Stop and remove containers, networks, images, and volumes
+          ps                  List containers
+          logs <service>      Fetch the logs of a container
+          bash <service>      Execute a command in a running container
+          mysqldump           Create a mysqldump 
+          composer <params>   Execute composer commands
+          time                Display the current timestamp
+__EOF__
+    exit 1
+}
+
 case "$1" in
+    help)
+        help
+        ;;        
     install)
         shift
         module-exec docker_install  "$@"
@@ -85,7 +111,6 @@ case "$1" in
         module-exec helper_time
         ;;
     *)
-        echo "Module not found. Aborting!"
-        exit 1
-    ;;
+        help
+        ;;
 esac
