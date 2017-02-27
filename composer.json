@@ -3,6 +3,14 @@
   "description": "Utility for your docker development environment",
   "version": "v0.1",
   "license": "MIT",
+  "authors": [
+      {
+          "name": "Benedikt Schmitz",
+          "email": "zeroboh@gmail.com",
+          "homepage": "https://github.com/egobude",
+          "role": "Developer"
+      }
+  ],
   "bin": [
     "bin/conti"
   ]
