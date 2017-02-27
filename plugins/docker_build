@@ -1,0 +1,11 @@
+#!/bin/sh
+
+IMAGE=$1
+
+if [ "$IMAGE" == "" ]; then
+	for IMAGE in ${IMAGES}; do
+		docker build -t ${REGISTRY}/${IMAGE} -f $WORKINGDIR/images/$IMAGE/Dockerfile $WORKINGDIR/images/$IMAGE
+	done
+else
+ 	docker build -t ${REGISTRY}/${IMAGE} -f $WORKINGDIR/images/$IMAGE/Dockerfile $WORKINGDIR/images/$IMAGE
+fi

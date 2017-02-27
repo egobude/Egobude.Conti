@@ -1,0 +1,95 @@
+#!/bin/bash
+
+[ -L $0 ] && pushd `readlink $0 | xargs dirname` > /dev/null \
+    || pushd `dirname $0` > /dev/null
+export WORKINGDIR=`pwd -P`
+popd > /dev/null
+
+export APP_NAME="james"
+export REGISTRY="${REGISTRY:=docker-registry.avency.de:5000/avency}"
+export PLUGINS=$(ls ${WORKINGDIR}/plugins)
+export TEMPLATES="${WORKINGDIR}/templates"
+export CMD_USER="1000:33"
+export DOCKER_COMPOSE_FILE="$(pwd)/docker-compose.yml"
+export DOCKER_ENV_FILE="$(pwd)/.env"
+
+function module-exec {
+	local MODULE=${1}
+	if [ ! -f ${WORKINGDIR}/plugins/${MODULE} ]; then
+		echo "Module not found. Aborting."
+		exit 1
+	fi
+	shift
+	bash ${WORKINGDIR}/plugins/${MODULE} $@
+}
+
+config-exists() {
+    if [ ! -f ${DOCKER_COMPOSE_FILE} ]; then
+      clear
+      echo "docker-compose.yml not found in the current directory, call '${APP_NAME} install conti<<<vx.dev' first"
+      exit 1
+    fi
+}
+
+case "$1" in
+    install)
+        shift
+        module-exec docker_install  "$@"
+        ;;
+    uninstall)
+        config-exists
+        module-exec docker_uninstall
+        ;;
+    mysqldump)
+        config-exists
+        module-exec docker_mysqldump
+        ;;
+    up)
+        config-exists
+		module-exec docker_up
+		;;
+    down)
+        config-exists
+		module-exec docker_down
+		;;
+    ps)
+        config-exists
+        module-exec docker_ps
+        ;;
+    logs)
+        config-exists
+        shift
+		module-exec docker_logs "$@"
+        ;;
+    build)
+        config-exists
+        shift
+		module-exec docker_build "$@"
+        ;;
+    push)
+        config-exists
+        shift
+		module-exec docker_push "$@"
+        ;;
+    bash)
+        config-exists
+        shift
+        module-exec docker_bash "$@"
+        ;;
+    grunt)
+        config-exists
+        module-exec docker_grunt "$@"
+        ;;
+    bower)
+        config-exists
+        module-exec docker_bower "$@"
+        ;;
+    composer)
+        config-exists
+        shift
+        module-exec docker_composer "$@"
+        ;;
+    time)
+        module-exec helper_time
+        ;;
+esac

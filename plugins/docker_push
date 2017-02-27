@@ -1,0 +1,11 @@
+#!/bin/sh
+
+IMAGE=$1
+
+if [ "$IMAGE" == "" ]; then
+	for IMAGE in ${IMAGES}; do
+		docker push ${REGISTRY}/${IMAGE}
+	done
+else
+ 	docker push ${REGISTRY}/${IMAGE}
+fi

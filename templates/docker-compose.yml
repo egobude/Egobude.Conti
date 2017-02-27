@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+
+  nginx: 
+    image: zeroboh/nginx:1.11-alpine
+    ports:
+      - 80
+    env_file:
+      - ./.env
+    links: 
+      - php
+    volumes:
+      - ${DATA_LOCATION}:/var/www/Web
+
+  php:
+    image: zeroboh/php:7.1-fpm-alpine
+    env_file:
+      - ./.env
+    links:
+      - mysql
+    volumes:
+      - ${DATA_LOCATION}:/var/www/Web
+
+  mysql:
+    image: zeroboh/mariadb:10.1-debian-jessie
+    volumes:
+      - ./mysql-persistence:/var/lib/mysql
+      - ./mysql-backup:/mysql-backup
+    env_file:
+      - ./.env
+
+  composer:
+    image: composer/composer:1-php5-alpine
+    env_file:
+      - ./.env
+    working_dir: /app/
+    volumes:
+      - ${DATA_LOCATION}:/app/
+      - ~/.composer/:/composer/
