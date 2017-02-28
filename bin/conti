@@ -72,53 +72,53 @@ case "$1" in
         ;;        
     install)
         shift
-        module-exec docker_install  "$@"
+        module-exec docker/install  "$@"
         ;;
     uninstall)
         config-exists
-        module-exec docker_uninstall
+        module-exec docker/uninstall
         ;;
     mysqldump)
         config-exists
-        module-exec docker_mysqldump
+        module-exec docker/mysqldump
         ;;
     up)
         config-exists
-		module-exec docker_up
+		module-exec docker/up
 		;;
     down)
         config-exists
-		module-exec docker_down
+		module-exec docker/down
 		;;
     ps)
         config-exists
-        module-exec docker_ps
+        module-exec docker/ps
         ;;
     logs)
         config-exists
         shift
-		module-exec docker_logs "$@"
+		module-exec docker/logs "$@"
         ;;
     bash)
         config-exists
         shift
-        module-exec docker_bash "$@"
+        module-exec docker/bash "$@"
         ;;
     grunt)
         config-exists
-        module-exec docker_grunt "$@"
+        module-exec docker/grunt "$@"
         ;;
     bower)
         config-exists
-        module-exec docker_bower "$@"
+        module-exec docker/bower "$@"
         ;;
     composer)
         config-exists
         shift
-        module-exec docker_composer "$@"
+        module-exec docker/composer "$@"
         ;;
     time)
-        module-exec helper_time
+        module-exec helper/time
         ;;
     *)
         help
