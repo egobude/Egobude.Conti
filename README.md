@@ -25,8 +25,14 @@ vendor/bin/conti
 
 ## Usage
 
-See help command
+### Default usage:
 
 ```
 vendor/bin/conti help
+```
+
+### Flow Framework usage:
+
+```
+bin/conti help
 ```
