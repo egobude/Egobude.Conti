@@ -36,3 +36,19 @@ vendor/bin/conti help
 ```
 bin/conti help
 ```
+
+## Setup your project
+
+Open a shell and run according to the setup ```bin/conti install docker.dev```
+
+Use any domain name, but you need to have your DNS setup correctly to point the this domain name to the VM main ip address. Then you can start your containers via ```bin/conti up # shortcut to docker-compose up -d```
+
+Use ```bin/conti help``` to list all available commands. 
+
+## General shortcuts
+
+### How to dump your database?
+
+```
+bin/conti mysqldump # save the sqldump into the volume ./mysql_backup folder
+```
