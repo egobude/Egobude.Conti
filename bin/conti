@@ -7,7 +7,17 @@ command -v docker-compose >/dev/null 2>&1 || { echo "docker-compose is not insta
 # Define some variables
 export APP_NAME="conti"
 export PROJECT_DIR=$(pwd -P)
-export PACKAGE_DIR=${PROJECT_DIR}/vendor/egobude/conti
+
+# Add install location check
+if [ -f "$PROJECT_DIR/flow" ] 
+then
+  # Flow Framework
+  export PACKAGE_DIR=${PROJECT_DIR}/Packages/Libraries/egobude/conti
+else
+  # Default 
+  export PACKAGE_DIR=${PROJECT_DIR}/vendor/egobude/conti
+fi
+
 export PLUGINS=$(ls ${PACKAGE_DIR}/plugins)
 export TEMPLATES="${PACKAGE_DIR}/templates"
 export CMD_USER="1000:33"
