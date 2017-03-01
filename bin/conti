@@ -29,6 +29,7 @@ export IMAGE_MARIADB="${CONTI_IMAGE_MARIADB:=zeroboh/mariadb:10.1-debian-jessie}
 export IMAGE_NGINX="${CONTI_IMAGE_NGINX:=zeroboh/nginx:1.11-alpine}"
 export IMAGE_PHP="${CONTI_IMAGE_PHP:=zeroboh/php:7.1-fpm-alpine}"
 export IMAGE_COMPOSER="${CONTI_IMAGE_COMPOSER:=composer/composer:1-php5-alpine}"
+export IMAGE_MAILCATCHER="${CONTI_IMAGE_MAILCATCHER:=zeroboh/mailcatcher:0.6-alpine}"
 
 # Define some functions
 function module-exec {

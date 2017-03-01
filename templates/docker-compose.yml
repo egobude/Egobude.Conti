@@ -19,6 +19,7 @@ services:
       - ./.env
     links:
       - mysql
+      - mailcatcher
     volumes:
       - ${DATA_LOCATION}:/var/www/Web
 
@@ -39,3 +40,8 @@ services:
     volumes:
       - ${DATA_LOCATION}:/app/
       - ~/.composer/:/composer/
+
+  mailcatcher:
+    image: {{ IMAGE_MAILCATCHER }}
+    ports:
+      - 1080:1080
