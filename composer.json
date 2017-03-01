@@ -1,6 +1,7 @@
 {
   "name": "egobude/conti",
   "description": "Utility for your docker development environment",
+  "version": "dev-master",
   "license": "MIT",
   "authors": [
       {
