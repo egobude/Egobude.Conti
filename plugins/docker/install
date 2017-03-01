@@ -16,7 +16,8 @@ cat ${TEMPLATES}/docker-compose.yml | \
     sed -e "s#{{ IMAGE_NGINX }}#${IMAGE_NGINX}#g" | \
     sed -e "s#{{ IMAGE_PHP }}#${IMAGE_PHP}#g" | \
     sed -e "s#{{ IMAGE_COMPOSER }}#${IMAGE_COMPOSER}#g" | \
-    sed -e "s#{{ IMAGE_MAILCATCHER }}#${IMAGE_MAILCATCHER}#g" \
+    sed -e "s#{{ IMAGE_MAILCATCHER }}#${IMAGE_MAILCATCHER}#g" | \
+    sed -e "s#{{ IMAGE_REDIS }}#${IMAGE_REDIS}#g" \
     > $(pwd)/docker-compose.yml
 
 cat ${TEMPLATES}/.env | \
