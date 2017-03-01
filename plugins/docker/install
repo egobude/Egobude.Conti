@@ -12,11 +12,10 @@ if [ "${DOMAIN}" == "" ]; then
 fi
 
 cat ${TEMPLATES}/docker-compose.yml | \
-    sed -e "s#{{ IMAGE_ELASTICSEARCH }}#${IMAGE_ELASTICSEARCH}#g" | \
     sed -e "s#{{ IMAGE_MARIADB }}#${IMAGE_MARIADB}#g" | \
     sed -e "s#{{ IMAGE_NGINX }}#${IMAGE_NGINX}#g" | \
     sed -e "s#{{ IMAGE_PHP }}#${IMAGE_PHP}#g" | \
-    sed -e "s#{{ IMAGE_REDIS }}#${IMAGE_REDIS}#g" \
+    sed -e "s#{{ IMAGE_COMPOSER }}#${IMAGE_COMPOSER}#g" \
     > $(pwd)/docker-compose.yml
 
 cat ${TEMPLATES}/.env | \

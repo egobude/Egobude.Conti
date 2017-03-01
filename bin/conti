@@ -24,6 +24,12 @@ export CMD_USER="1000:33"
 export DOCKER_COMPOSE_FILE="$(pwd)/docker-compose.yml"
 export DOCKER_ENV_FILE="$(pwd)/.env"
 
+# Define images
+export IMAGE_MARIADB="${CONTI_IMAGE_MARIADB:=zeroboh/mariadb:10.1-debian-jessie}"
+export IMAGE_NGINX="${CONTI_IMAGE_NGINX:=zeroboh/nginx:1.11-alpine}"
+export IMAGE_PHP="${CONTI_IMAGE_PHP:=zeroboh/php:7.1-fpm-alpine}"
+export IMAGE_COMPOSER="${CONTI_IMAGE_COMPOSER:=composer/composer:1-php5-alpine}"
+
 # Define some functions
 function module-exec {
 	local MODULE=${1}

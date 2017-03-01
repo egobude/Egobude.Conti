@@ -45,7 +45,16 @@ Use any domain name, but you need to have your DNS setup correctly to point the 
 
 Use ```bin/conti help``` to list all available commands. 
 
-## General shortcuts
+## General tips
+
+### Use custom images
+
+If you want to use custom images you can override them via env variable. The following env variables are available:
+
+* CONTI_IMAGE_MARIADB, [zeroboh/mariadb:10.1-debian-jessie](https://hub.docker.com/r/zeroboh/mariadb/tags/)
+* CONTI_IMAGE_NGINX, [zeroboh/nginx:1.11-alpine](https://hub.docker.com/r/zeroboh/nginx/tags/)
+* CONTI_IMAGE_PHP, [zeroboh/php:7.1-fpm-alpine](https://hub.docker.com/r/zeroboh/php/tags/)
+* CONTI_IMAGE_COMPOSER, [composer/composer:1-php5-alpine](https://hub.docker.com/r/composer/composer/tags/)
 
 ### How to dump your database?
 
