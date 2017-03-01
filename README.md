@@ -39,9 +39,9 @@ bin/conti help
 
 ## Setup your project
 
-Open a shell and run according to the setup ```bin/conti install docker.dev```
+Open a shell and run the setup: ```bin/conti install docker.dev```
 
-Use any domain name, but you need to have your DNS setup correctly to point the this domain name to the VM main ip address. Then you can start your containers via ```bin/conti up # shortcut to docker-compose up -d```
+Use any domain name here, but make sure to add the corresponding DNS entry. Then you can start your containers via ```bin/conti up # shortcut to docker-compose up -d```
 
 Use ```bin/conti help``` to list all available commands. 
 
@@ -58,6 +58,8 @@ If you want to use custom images you can override them via env variable. The fol
 
 ### How to dump your database?
 
+To dump your database during development you can call the following command. It will create a new .sql file in the ./mysql-backup folder.
+
 ```
-bin/conti mysqldump # save the sqldump into the volume ./mysql_backup folder
+bin/conti mysqldump 
 ```
