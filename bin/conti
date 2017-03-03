@@ -73,6 +73,7 @@ help() {
           uninstall           Remove the docker-compose file and .env file
           up                  Create and start containers
           down                Stop and remove containers, networks, images, and volumes
+          restart             Restart services
           ps                  List containers
           logs <service>      Fetch the logs of a container
           bash <service>      Execute a command in a running container
@@ -110,6 +111,10 @@ case "$1" in
     down)
         config-exists
 		module-exec docker/down
+		;;
+    restart)
+        config-exists
+		module-exec docker/restart
 		;;
     ps)
         config-exists
