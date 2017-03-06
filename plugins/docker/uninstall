@@ -1,4 +1,4 @@
 #!/bin/bash
 
 docker-compose down -v --remove-orphans
-rm -f docker-compose.yml .env
+rm -rf docker-compose.yml .env

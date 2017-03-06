@@ -6,22 +6,23 @@ command -v docker-compose >/dev/null 2>&1 || { echo "docker-compose is not insta
 
 # Define some variables
 export APP_NAME="conti"
-export PROJECT_DIR=$(pwd -P)
+export PROJECT_FOLDER=$(pwd -P)
 
 # Add install location check
-if [ -f "$PROJECT_DIR/flow" ] 
+if [ -f "$PROJECT_FOLDER/flow" ]
 then
   # Flow Framework
-  export PACKAGE_DIR=${PROJECT_DIR}/Packages/Libraries/egobude/conti
+  export CONTI_INSTALLATION_FOLDER=${PROJECT_FOLDER}/Packages/Libraries/egobude/conti
 else
   # Default 
-  export PACKAGE_DIR=${PROJECT_DIR}/vendor/egobude/conti
+  export CONTI_INSTALLATION_FOLDER=${PROJECT_FOLDER}/vendor/egobude/conti
 fi
 
-export PLUGINS=$(ls ${PACKAGE_DIR}/plugins)
-export TEMPLATES="${PACKAGE_DIR}/templates"
+export CONTI_PLUGIN_FOLDER="${CONTI_INSTALLATION_FOLDER}/plugins"
+export CONTI_TEMPLATE_FOLDER="${CONTI_INSTALLATION_FOLDER}/templates"
+export PROJECT_CONFIGURATION_FOLDER="$(PROJECT_FOLDER)/conti"
 export CMD_USER="1000:33"
-export DOCKER_COMPOSE_FILE="$(pwd)/docker-compose.yml"
+export DOCKER_COMPOSE_FILE="$(PROJECT_FOLDER)/docker-compose.yml"
 export DOCKER_ENV_FILE="$(pwd)/.env"
 
 # Define images
@@ -35,16 +36,16 @@ export IMAGE_REDIS="${CONTI_IMAGE_REDIS:=zeroboh/redis:3.2-alpine}"
 # Define some functions
 function module-exec {
 	local MODULE=${1}
-	if [ ! -f ${PACKAGE_DIR}/plugins/${MODULE} ]; then
+	if [ ! -f ${CONTI_INSTALLATION_FOLDER}/plugins/${MODULE} ]; then
 		echo "Module not found. Aborting."
 		exit 1
 	fi
 	shift
-	bash ${PACKAGE_DIR}/plugins/${MODULE} $@
+	bash ${CONTI_INSTALLATION_FOLDER}/plugins/${MODULE} $@
 }
 
 function get-version {
-    echo $(cat ${PACKAGE_DIR}/composer.json \
+    echo $(cat ${CONTI_INSTALLATION_FOLDER}/composer.json \
       | grep version \
       | head -1 \
       | awk -F: '{ print $2 }' \
