@@ -19,15 +19,17 @@ conti - Utility for your docker development environment
 
 ## Create a new project
 
- > Not fully implemented
+> Not fully implemented
 
  * `bin/conti project:create flow` (flow.neos.io)
  * `bin/conti project:create neos` (neos.io)
  * `bin/conti project:create symfony` (symfony.com)
- * `bin/conti project:create wordpress` (shopware.com)
+ * `bin/conti project:create shopware` (shopware.com)
  * `bin/conti project:create wordpress` (wordpress.com)
  
 ## Interact with your stack 
+
+> Fully implemented
 
  * `bin/conti stack:up` - Create and start containers
  * `bin/conti stack:down` - Stop and remove containers, networks, images, and volumes
@@ -35,5 +37,7 @@ conti - Utility for your docker development environment
  * `bin/conti stack:restart` - Restart services
  
 ## Helper commands
+
+> Fully implemented
 
  * `bin/conti helper:time` - Display current timestamp
