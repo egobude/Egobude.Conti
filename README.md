@@ -15,26 +15,36 @@ conti - Utility for your docker development environment
 
 ## How to start
 
-`composer require egobude/conti`
+Create a new project: 
 
-## Create a new project
+```
+composer create-project --dev --keep-vcs neos/flow-base-distribution flow-framework
+```
 
-> Not fully implemented
+Then add `conti` to your composer.json:
 
- * `bin/conti project:create flow` (flow.neos.io)
- * `bin/conti project:create neos` (neos.io)
- * `bin/conti project:create symfony` (symfony.com)
- * `bin/conti project:create shopware` (shopware.com)
- * `bin/conti project:create wordpress` (wordpress.com)
+```
+composer require egobude/conti
+```
+
+After `conti` is installed you can create your docker development stack:
+
+```
+bin/conti stack:create
+```
+ 
+This will create a new `docker-compose.yml` and a `.env` file in your project directory. See [Interact with your stack](#interact-with-your-stack) to get started.
  
 ## Interact with your stack 
 
-> Fully implemented
+> Not fully implemented
 
  * `bin/conti stack:up` - Create and start containers
  * `bin/conti stack:down` - Stop and remove containers, networks, images, and volumes
  * `bin/conti stack:exec` - Execute a command in a running container
  * `bin/conti stack:restart` - Restart services
+ * `bin/conti stack:logs` - View output from containers
+ * `bin/conti stack:deploy` - Deploy your application
  
 ## Helper commands
 
