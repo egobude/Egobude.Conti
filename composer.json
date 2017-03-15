@@ -1,20 +1,11 @@
 {
-  "name": "egobude/conti",
-  "description": "Utility for your docker development environment",
-  "version": "dev-master",
-  "license": "MIT",
-  "authors": [
-      {
-          "name": "Benedikt Schmitz",
-          "email": "zeroboh@gmail.com",
-          "homepage": "https://github.com/egobude",
-          "role": "Developer"
-      }
-  ],
-  "config": {
-    "bin-dir": "bin"
-  },
-  "bin": [
-    "bin/conti"
-  ]
+    "require": {
+        "symfony/console": "^3.2",
+        "symfony/process": "^3.2",
+        "symfony/filesystem": "^3.2"
+    },
+    "autoload": {
+        "psr-4": { "Conti\\": "src/Conti" }
+    },
+    "bin": ["bin/composer"]
 }

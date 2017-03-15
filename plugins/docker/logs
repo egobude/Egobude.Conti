@@ -1,9 +1,0 @@
-#!/bin/sh
-
-IMAGE=$1
-
-if [ "$IMAGE" == "" ]; then
-	docker-compose logs -f
-else
-	docker-compose logs -f ${IMAGE}  
-fi

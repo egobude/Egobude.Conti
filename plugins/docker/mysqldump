@@ -1,4 +1,0 @@
-#!/bin/sh
-
-source "./.env"
-docker-compose exec mysql bash -c "mysqldump -uroot --password=${MYSQL_ROOT_PASSWORD} ${MYSQL_DATABASE} > /mysql-backup/backup-$(date +%Y-%m-%d-%H-%M-%S).sql"

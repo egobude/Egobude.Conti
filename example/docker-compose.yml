@@ -1,0 +1,37 @@
+version: "2"
+
+services:
+
+  nginx:
+    image: "zeroboh/nginx:1.11-alpine"
+    links:
+      - "php"
+    ports:
+      - "80"
+    env_file:
+      - ./.env
+
+  php:
+    image: "zeroboh/php:7.1-fpm-alpine"
+    env_file:
+      - ./.env
+
+  mysql:
+    image: "zeroboh/mariadb:10.1-debian-jessie"
+    command: "--character-set-server=utf8 --collation-server=utf8_unicode_ci"
+    env_file:
+      - ./.env
+
+  composer:
+    image: "composer/composer:1-php5-alpine"
+    env_file:
+      - ./.env
+    working_dir: "/app/"
+
+  nodejs:
+    image: "zeroboh/nodejs"
+
+  mailcatcher:
+    image: "zeroboh/mailcatcher:0.6-alpine"
+    ports:
+      - 1080:1080
