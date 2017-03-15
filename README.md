@@ -5,61 +5,35 @@
 [![Monthly Downloads](https://poser.pugx.org/egobude/conti/d/monthly)](https://packagist.org/packages/egobude/conti)
 
 conti - Utility for your docker development environment
-=================== 
+===================
 
-```conti``` helps you to interact with your docker development environment. It provides some useful commands to speed up your development based on docker containers. 
+## Requirements
 
-## Installation
+ * docker (https://docs.docker.com/engine/installation)
+ * docker-compose (https://docs.docker.com/compose)
+ * composer (https://getcomposer.org)
 
-To install ```conti``` you just have to execute the following command:
+## How to start
 
-```
-composer require egobude/conti
-````
+`composer require egobude/conti`
 
-Then you can call it via 
+## Create a new project
 
-```
-vendor/bin/conti
-```
+ > Not fully implemented
 
-## Usage
+ * `bin/conti project:create flow` (flow.neos.io)
+ * `bin/conti project:create neos` (neos.io)
+ * `bin/conti project:create symfony` (symfony.com)
+ * `bin/conti project:create wordpress` (shopware.com)
+ * `bin/conti project:create wordpress` (wordpress.com)
+ 
+## Interact with your stack 
 
-### Default usage:
+ * `bin/conti stack:up` - Create and start containers
+ * `bin/conti stack:down` - Stop and remove containers, networks, images, and volumes
+ * `bin/conti stack:exec` - Execute a command in a running container
+ * `bin/conti stack:restart` - Restart services
+ 
+## Helper commands
 
-```
-vendor/bin/conti help
-```
-
-### Flow Framework usage:
-
-```
-bin/conti help
-```
-
-## Setup your project
-
-Open a shell and run the setup: ```bin/conti install docker.dev```
-
-Use any domain name here, but make sure to add the corresponding DNS entry. Then you can start your containers via ```bin/conti up # shortcut to docker-compose up -d```
-
-Use ```bin/conti help``` to list all available commands. 
-
-## General tips
-
-### Use custom images
-
-If you want to use custom images you can override them via env variable. The following env variables are available:
-
-* CONTI_IMAGE_MARIADB, [zeroboh/mariadb:10.1-debian-jessie](https://hub.docker.com/r/zeroboh/mariadb/tags/)
-* CONTI_IMAGE_NGINX, [zeroboh/nginx:1.11-alpine](https://hub.docker.com/r/zeroboh/nginx/tags/)
-* CONTI_IMAGE_PHP, [zeroboh/php:7.1-fpm-alpine](https://hub.docker.com/r/zeroboh/php/tags/)
-* CONTI_IMAGE_COMPOSER, [composer/composer:1-php5-alpine](https://hub.docker.com/r/composer/composer/tags/)
-
-### How to dump your database?
-
-To dump your database during development you can call the following command. It will create a new .sql file in the ./mysql-backup folder.
-
-```
-bin/conti mysqldump 
-```
+ * `bin/conti helper:time` - Display current timestamp
